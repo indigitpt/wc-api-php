@@ -372,6 +372,7 @@ class HttpClient
 
         // strip out instances of the Unicode NULL character (\u0000) from property names
         $body = str_replace('\u0000', '', $body);
+        $body = preg_replace('/[\x00-\x1F\x80-\xFF]/', '', $body);
 
         $parsedResponse = \json_decode($body);
 
