@@ -373,6 +373,8 @@ class HttpClient
         // strip out instances of the Unicode NULL character (\u0000) from property names
         $body = str_replace('\u0000', '', $body);
         $body = preg_replace('/[\x00-\x1F\x80-\xFF]/', '', $body);
+        # Here we should also check if the header content type is "application/json"
+        # For users with protected services like cloudflare, cloudflare could be blocking the requests
 
         $parsedResponse = \json_decode($body);
 
